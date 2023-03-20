@@ -1,4 +1,4 @@
-Movie app
+Assignment
 ------------
 To run this project
 

@@ -35,7 +35,7 @@ const SectionHead = ({ userData }) => {
             </div>
           </div>
           {openProfile &&
-            <div className='fixed right-10 transition duration-300 Z-50'>
+            <div className='fixed right-10 transition duration-300 z-50'>
               <UserProfile userData={userData} users={users}/>
             </div>
           }

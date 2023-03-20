@@ -17,7 +17,7 @@ const UsersCard = () => {
 
   return (
     <div>
-      <div className='bg-white w-[500px] h-[500px] rounded-3xl shadow-md shadow-gray-300'>
+      <div className='bg-white md:w-[500px] h-[500px] rounded-3xl shadow-md shadow-gray-300'>
         <div className='bg-gray-100 rounded-t-3xl py-7'>
           <h3 className='text-center font-bold text-xl text-gray-600 '>Select an account</h3>
         </div>

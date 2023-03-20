@@ -7,7 +7,7 @@ To run this project
 		git clone https://github.com/muhammedamirt/mini_user_app.git
 ## Frontend
 
-- change directory to client.
+- start app after install node_modules.
 
         npm install
         npm start

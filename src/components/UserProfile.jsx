@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-const UserProfile = ({userData}) => {
+const UserProfile = ({ userData, users }) => {
+    const navigate = useNavigate()
     return (
         <div className='bg-white z-50 shadow w-64 rounded-3xl'>
             <div className='flex justify-center py-3'>
@@ -16,32 +17,29 @@ const UserProfile = ({userData}) => {
                 </div>
             </div>
             <hr className='mx-5' />
-            <div className='px-5 py-2'>
-                <div className='flex gap-3 items-center'>
-                    <div>
-                        <img className='h-8 w-8 rounded-full object-cover' src="https://i1.wp.com/onaircode.com/wp-content/uploads/2019/10/Responsive-Google-Map.jpg?fit=1024%2C588&ssl=1" alt="" />
+            {users.length !== 0 ?
+                users.map((user) => (
+                    // <Link to={'/Profile'} state={user}>
+                    <div className='px-5 py-2 cursor-pointer' onClick={() => navigate('/Profile', { state: user })}>
+                        <div className='flex gap-3 items-center'>
+                            <div>
+                                <img className='h-8 w-8 rounded-full object-cover' src={user.profilepicture} alt="" />
+                            </div>
+                            <div className='text-md font-semibold text-gray-500'>
+                                <p>{user.name}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div className='text-md font-semibold text-gray-500'>
-                        <p>name</p>
-                    </div>
-                </div>
-            </div>
+                    // </Link>
+                ))
+                : null}
             <hr className='mx-5 ' />
-            <div className='px-5 py-2'>
-                <div className='flex gap-3 items-center'>
-                    <div>
-                        <img className='h-8 w-8 rounded-full object-cover' src="https://i1.wp.com/onaircode.com/wp-content/uploads/2019/10/Responsive-Google-Map.jpg?fit=1024%2C588&ssl=1" alt="" />
-                    </div>
-                    <div className='text-md font-semibold text-gray-500'>
-                        <p>name</p>
-                    </div>
-                </div>
-            </div>
+
             <div className='flex justify-center py-3'>
                 <Link to={'/'}>
-                <button className='bg-red-600 px-3 py-1 rounded-full font-semibold text-white'>
-                    Sign out
-                </button>
+                    <button className='bg-red-600 px-3 py-1 rounded-full font-semibold text-white'>
+                        Sign out
+                    </button>
                 </Link>
             </div>
         </div>

@@ -2,8 +2,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 const ChatCard = () => {
-    const [users, setUsers] = useState([])
     const [openChats, setOpenChats] = useState(false)
+    const [users, setUsers] = useState([])
     useEffect(() => {
         const fetchUsersData = async () => {
             const { data } = await axios.get('https://panorbit.in/api/users.json')

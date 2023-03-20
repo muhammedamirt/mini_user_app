@@ -27,7 +27,7 @@ const UsersCard = () => {
               <div>
                 <img className='h-8 w-8 rounded-full object-cover' src={user?.profilepicture} alt="" />
               </div>
-              <Link to={'/profile'} state={user}>
+              <Link to={'/Profile'} state={user}>
                 <h1 className='flex items-center font-semibold text-gray-500'>{user?.name}</h1>
               </Link>
             </div>

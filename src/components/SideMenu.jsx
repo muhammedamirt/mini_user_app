@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import './styles.css'
 
 
-const SideMenu = ({userData}) => {
+const SideMenu = ({  setComingSoon }) => {
+    const {state} = useLocation()
     //setting states for menu tabs
     const [profileTab, setProfileTab] = useState(true)
     const [postTab, setPostTab] = useState(false)
@@ -11,20 +12,21 @@ const SideMenu = ({userData}) => {
     const [galleryTab, setGalleryTab] = useState(false)
     const navigate = useNavigate()
     // function for profile tab
-    const handleProfileTab = () =>{
+    const handleProfileTab = () => {
         setProfileTab(true)
         setPostTab(false)
         setGalleryTab(false)
         setToDoTab(false)
-        navigate('/profile')
+        setComingSoon(false)
+        navigate('/Profile')
     }
     //function for post tab
-    const handlePostTab = ()=>{
+    const handlePostTab = () => {
         setProfileTab(false)
         setPostTab(true)
         setGalleryTab(false)
         setToDoTab(false)
-        navigate('/coming-soon')
+        setComingSoon(true)
     }
     // function for gallery tab
     const handleGalleryTab = () => {
@@ -32,22 +34,24 @@ const SideMenu = ({userData}) => {
         setPostTab(false)
         setGalleryTab(true)
         setToDoTab(false)
-        navigate('/coming-soon')
+        setComingSoon(true)
     }
     // function for todo tab
-    const  handleToDoTab = () => {
+    const handleToDoTab = () => {
         setProfileTab(false)
         setPostTab(false)
         setGalleryTab(false)
         setToDoTab(true)
-        navigate('/coming-soon')
-    } 
+        setComingSoon(true)
+    }
     let selected = "text-white font-bold py-2 pb-4 md:border-b-[1px] cursor-pointer"
     let unselected = "text-white opacity-60 font-semibold py-2 pb-4  md:border-b-[1px] cursor-pointer hover:opacity-80 hover:font-bold transition"
     return (
+
         <div className='sideMenu w-full md:rounded-3xl border h-full z-50'>
             <div className='flex items-center md:px-10 h-full'>
                 <div className='w-full flex justify-around md:flex-col'>
+                <Link to={'/Profile'} state={state}>
                     <div className={profileTab ? selected : unselected} onClick={handleProfileTab}>
                         <span className='sm:hidden '>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -56,6 +60,8 @@ const SideMenu = ({userData}) => {
                         </span>
                         <h4 className='hidden sm:block'>Profile</h4>
                     </div>
+                </Link>
+                <Link to={'/Post'} state={state}>
                     <div className={postTab ? selected : unselected} onClick={handlePostTab}>
                         <span className='sm:hidden'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -64,6 +70,8 @@ const SideMenu = ({userData}) => {
                         </span>
                         <h4 className='hidden sm:block'>Post</h4>
                     </div>
+                </Link>
+                <Link to={'/Gallery'} state={state}>
                     <div className={galleryTab ? selected : unselected} onClick={handleGalleryTab}>
                         <span className='sm:hidden'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -72,17 +80,21 @@ const SideMenu = ({userData}) => {
                         </span>
                         <h4 className='hidden sm:block'>Gallery</h4>
                     </div>
-                    <div className={toDo ? selected : unselected} onClick={handleToDoTab}>
-                        <span className='sm:hidden'>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                            </svg>
-                        </span>
-                        <h4 className='hidden sm:block'>To Do</h4>
-                    </div>
+                </Link>
+                    <Link to={'/ToDo'} state={state}>
+                        <div className={toDo ? selected : unselected} onClick={handleToDoTab}>
+                            <span className='sm:hidden'>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                                </svg>
+                            </span>
+                            <h4 className='hidden sm:block'>To Do</h4>
+                        </div>
+                    </Link>
                 </div>
             </div>
         </div>
+
     )
 }
 
